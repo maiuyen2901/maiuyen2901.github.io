@@ -1,0 +1,29 @@
+body {
+    font-family: "Courier New", monospace;
+    margin: 40px;
+}
+
+
+.level-1 {
+    list-style-type: upper-roman;
+}
+
+.level-2-alpha {
+    list-style-type: lower-alpha;
+}
+
+
+.level-2-number {
+    list-style-type: decimal;
+}
+
+
+.level-2-dash,
+.level-3-dash {
+    list-style-type: none;
+}
+
+.level-2-dash li::before,
+.level-3-dash li::before {
+    content: "- ";
+}
