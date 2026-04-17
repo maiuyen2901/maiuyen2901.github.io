@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Beauty Shop</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff0f6;
+}
+
+header {
+  background: linear-gradient(135deg, #ff4fa3, #ff85c1);
+  color: white;
+  padding: 15px 30px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.search-box {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+}
+
+.cart {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.banner {
+  background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9") center/cover;
+  height: 320px;
+  margin: 15px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.banner::after {
+  content: "Sale mỹ phẩm 50% 💄";
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  gap: 15px;
+  margin: 15px;
+}
+
+.category {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.category:hover {
+  background: #ffe4f1;
+  transform: translateY(-3px);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+  padding: 15px;
+}
+
+.product {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product h3 {
+  font-size: 16px;
+}
+
+.price {
+  color: #ff4fa3;
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #ff4fa3, #ff85c1);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.search-section {
+  text-align: center;
+  margin: 15px;
+}
+
+.search-section input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+footer {
+  background: #ff4fa3;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .categories {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top-bar">
+    <span>Miễn phí vận chuyển 🚚</span>
+    <span>Đăng nhập | Đăng ký</span>
+  </div>
+
+  <div class="nav">
+    <div class="logo">💄 Beauty Shop</div>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Tìm mỹ phẩm...">
+    </div>
+    <div class="cart">🛒 (<span id="count">0</span>)</div>
+  </div>
+</header>
+
+<div class="banner"></div>
+
+<div class="categories">
+  <div class="category">Son môi</div>
+  <div class="category">Kem dưỡng</div>
+  <div class="category">Serum</div>
+  <div class="category">Makeup</div>
+  <div class="category">Nước hoa</div>
+  <div class="category">Chăm sóc da</div>
+</div>
+
+<div class="search-section">
+  <input type="text" id="search2" placeholder="Tìm sản phẩm...">
+</div>
+
+<div class="products" id="products"></div>
+
+<footer>
+  © 2026 Beauty Shop - Mỹ phẩm chính hãng
+</footer>
+
+<script>
+const products = [
+  {id:1, name:"Son Dior", price:800000, img:"https://images.unsplash.com/photo-1586495777744-4413f21062fa"},
+  {id:2, name:"Serum dưỡng da", price:500000, img:"https://images.unsplash.com/photo-1608248597279-f99d160bfcbc"},
+  {id:3, name:"Kem chống nắng", price:300000, img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348"},
+  {id:4, name:"Nước hoa Chanel", price:2000000, img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
+  {id:5, name:"Phấn nền", price:600000, img:"https://images.unsplash.com/photo-1583001809873-a128495da465"},
+  {id:6, name:"Mascara", price:250000, img:"https://images.unsplash.com/photo-1585386959984-a41552231658"}
+];
+
+let cart = [];
+
+function renderProducts(list) {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.img}">
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <p class="price">${p.price.toLocaleString()}đ</p>
+          <button onclick="addToCart(${p.id})">Thêm vào giỏ</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function addToCart(id) {
+  const item = products.find(p => p.id === id);
+  cart.push(item);
+  document.getElementById("count").innerText = cart.length;
+}
+
+document.getElementById("search").addEventListener("input", filter);
+document.getElementById("search2").addEventListener("input", filter);
+
+function filter() {
+  const keyword = document.getElementById("search").value.toLowerCase() ||
+                  document.getElementById("search2").value.toLowerCase();
+
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(keyword)
+  );
+
+  renderProducts(filtered);
+}
+
+renderProducts(products);
+</script>
+
+</body>
+</html>
