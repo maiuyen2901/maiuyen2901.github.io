@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form đăng ký</title>
+    <style>
+        body {
+            font-family: Arial,
+        }
+
+        .form {
+            width: 250px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin: 5px 0;
+            padding: 5px;
+        }
+
+        #strength {
+            height: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form">
+    <h3>Đăng ký</h3>
+
+    Username:
+    <input type="text" id="username">
+
+    Password:
+    <input type="password" id="password" onkeyup="checkStrength()">
+
+    <div id="strength"></div>
+
+    Ảnh:
+    <input type="file" id="image">
+
+    <button onclick="validate()">Đăng ký</button>
+
+    <p id="message"></p>
+</div>
+
+<script>
+function checkStrength() {
+    var pass = document.getElementById("password").value;
+    var bar = document.getElementById("strength");
+
+    if (pass.length < 6) {
+        bar.style.background = "red";
+    } else if (pass.match(/[a-z]/) && pass.match(/[0-9]/)) {
+        bar.style.background = "green";
+    } else {
+        bar.style.background = "orange";
+    }
+}
+
+function validate() {
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
+    var file = document.getElementById("image").files[0];
+    var msg = document.getElementById("message");
+
+    msg.innerHTML = "";
+
+    if (user.length < 5 || user.length > 15) {
+        msg.innerHTML = "Username phải 5-15 ký tự";
+        return;
+    }
+
+    if (!(pass.match(/[a-z]/) && pass.match(/[0-9]/))) {
+        msg.innerHTML = "Password phải có chữ và số";
+        return;
+    }
+
+    if (file) {
+        if (file.type != "image/jpeg" && file.type != "image/png") {
+            msg.innerHTML = "Ảnh phải là JPG hoặc PNG";
+            return;
+        }
+    }
+
+    msg.innerHTML = "Đăng ký thành công!";
+}
+</script>
+
+</body>
+</html>

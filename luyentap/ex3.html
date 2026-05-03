@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="text-align:center;">Student Grade Calculator ® § ≥</h2>
+
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>Math</td>
+            <td><input type="number" class="grade" value="8"></td>
+        </tr>
+        <tr>
+            <td>Physics</td>
+            <td><input type="number" class="grade" value="7"></td>
+        </tr>
+        <tr>
+            <td>Chemistry</td>
+            <td><input type="number" class="grade" value="9"></td>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td><input type="number" class="grade" value="6"></td>
+        </tr>
+    </table>
+
+    <button onclick="calculateAverage()">Calculate Average</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateAverage() {
+            let grades = document.querySelectorAll(".grade");
+            let sum = 0;
+
+            grades.forEach(function(item) {
+                sum += Number(item.value);
+            });
+
+            let average = sum / grades.length;
+
+            document.getElementById("result").innerHTML =
+                "Average Grade = " + average.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>

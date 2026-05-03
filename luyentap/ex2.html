@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bảng giá linh kiện</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h3 style="text-align:center;">Bảng giá linh kiện &copy; &trade; &bull;</h3>
+
+<table id="myTable">
+    <tr>
+        <th>Linh kiện</th>
+        <th>Giá</th>
+    </tr>
+    <tr>
+        <td>CPU</td>
+        <td>5.000.000đ</td>
+    </tr>
+    <tr>
+        <td>RAM</td>
+        <td>2.000.000đ</td>
+    </tr>
+    <tr>
+        <td>Ổ cứng</td>
+        <td>1.500.000đ</td>
+    </tr>
+    <tr>
+        <td>Card màn hình</td>
+        <td>8.000.000đ</td>
+    </tr>
+</table>
+
+<button onclick="changeColor()">Change Color</button>
+
+<script>
+function changeColor() {
+    var table = document.getElementById("myTable");
+    table.style.color = "red";
+}
+</script>
+
+</body>
+</html>
