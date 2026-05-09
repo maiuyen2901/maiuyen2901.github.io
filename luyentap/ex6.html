@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore Navigation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            margin: 0 5px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .dot {
+            margin: 0 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Bookstore</h1>
+
+<button onclick="toggleMenu()">Toggle Menu</button>
+
+<div id="menu" class="nav">
+    <a href="#">Home</a>
+    <span class="dot">•</span>
+    <a href="#">Books</a>
+    <span class="dot">•</span>
+    <a href="#">Authors</a>
+    <span class="dot">•</span>
+    <a href="#">Contact</a>
+</div>
+
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById("menu");
+        menu.classList.toggle("hidden");
+    }
+</script>
+
+</body>
+</html>

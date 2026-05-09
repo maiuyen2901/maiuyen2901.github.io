@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Showcase</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+    
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: black;
+        }
+
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Product Showcase</h1>
+
+<button onclick="togglePrice()">Toggle Price</button>
+
+<div class="product-grid">
+
+
+    <div class="card">
+        <h2>Phone &reg;</h2>
+        <p class="price">500 &euro;</p>
+        <p>Smartphone with modern features &rarr;</p>
+    </div>
+
+
+    <div class="card">
+        <h2>Laptop</h2>
+        <p class="price">900 &euro;</p>
+        <p>High performance laptop &rarr;</p>
+    </div>
+
+
+    <div class="card">
+        <h2>Headphones</h2>
+        <p class="price">120 &euro;</p>
+        <p>Wireless sound experience &rarr;</p>
+    </div>
+
+
+    <div class="card">
+        <h2>Smart Watch</h2>
+        <p class="price">250 &euro;</p>
+        <p>Track your daily activities &rarr;</p>
+    </div>
+
+</div>
+
+<script>
+
+    let hidden = false;
+
+    function togglePrice() {
+
+        let prices = document.getElementsByClassName("price");
+
+        hidden = !hidden;
+
+        for (let i = 0; i < prices.length; i++) {
+
+            if (hidden) {
+                prices[i].style.display = "none";
+            } else {
+                prices[i].style.display = "block";
+            }
+
+        }
+    }
+
+</script>
+
+</body>
+</html>

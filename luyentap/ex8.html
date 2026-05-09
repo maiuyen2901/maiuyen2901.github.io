@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Newsletter Subscription</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+
+            display: grid;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .group {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkgreen;
+        }
+
+        #message {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Newsletter Subscription</h1>
+
+<div class="form-container">
+
+    <div>
+        <label>Full Name:</label>
+        <input type="text" id="fullname">
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <input type="email" id="email">
+    </div>
+
+    <div class="group">
+        <label>Subscription Type:</label><br>
+
+        <input type="radio" name="sub" value="Monthly"> Monthly
+        <input type="radio" name="sub" value="Yearly"> Yearly
+    </div>
+
+    <div class="group">
+        <label>Interests:</label><br>
+
+        <input type="checkbox" class="interest"> Technology <br>
+        <input type="checkbox" class="interest"> Sports <br>
+        <input type="checkbox" class="interest"> Music
+    </div>
+
+    <button onclick="validateForm()">Subscribe</button>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+    function validateForm() {
+
+        let fullname = document.getElementById("fullname").value;
+        let email = document.getElementById("email").value;
+        let interests = document.getElementsByClassName("interest");
+        let message = document.getElementById("message");
+
+        let checked = false;
+
+        for (let i = 0; i < interests.length; i++) {
+            if (interests[i].checked) {
+                checked = true;
+            }
+        }
+
+        if (
+            fullname === "" ||
+            !email.includes("@") ||
+            !email.includes(".") ||
+            !checked
+        ) {
+            message.innerHTML = "Thông tin không hợp lệ!";
+            message.className = "error";
+        }
+        else {
+            message.innerHTML = "Đăng ký thành công!";
+            message.className = "success";
+        }
+    }
+</script>
+
+</body>
+</html>

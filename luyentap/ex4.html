@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Menu</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            color: darkgreen;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            background: white;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .veg {
+            border-left: 5px solid green;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Restaurant Menu</h1>
+
+<button onclick="filterMenu()">Filter Vegetarian</button>
+
+<h2> Appetizers</h2>
+<div class="menu-item veg">Salad - 50.000₫</div>
+<div class="menu-item">Chicken Wings - 80.000₫</div>
+
+<h2> Main Course</h2>
+<div class="menu-item veg">Vegetable Pasta - 120.000₫</div>
+<div class="menu-item">Beef Steak - 200.000₫</div>
+
+<!-- Desserts -->
+<h2> Desserts</h2>
+<div class="menu-item veg">Ice Cream - 40.000₫</div>
+<div class="menu-item">Cheesecake - 60.000₫</div>
+
+<h2> Drinks</h2>
+<div class="menu-item veg">Orange Juice - 30.000₫</div>
+<div class="menu-item">Coffee - 25.000₫</div>
+
+<script>
+    let showVegOnly = false;
+
+    function filterMenu() {
+        let items = document.getElementsByClassName("menu-item");
+        showVegOnly = !showVegOnly;
+
+        for (let i = 0; i < items.length; i++) {
+            if (showVegOnly) {
+                if (!items[i].classList.contains("veg")) {
+                    items[i].style.display = "none";
+                } else {
+                    items[i].style.display = "block";
+                }
+            } else {
+                items[i].style.display = "block";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

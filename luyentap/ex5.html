@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabbed Interface</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: #eee;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background: #af4c54;
+            color: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1> Tab Interface</h1>
+
+<div class="tabs">
+    <button class="tab active" onclick="switchTab(0)">→ Features</button>
+    <button class="tab" onclick="switchTab(1)">Pricing</button>
+    <button class="tab" onclick="switchTab(2)">Reviews</button>
+    <button class="tab" onclick="switchTab(3)">Support</button>
+</div>
+
+<div class="tab-content active">Nội dung Features: Giới thiệu tính năng sản phẩm.</div>
+<div class="tab-content">Nội dung Pricing: Thông tin giá.</div>
+<div class="tab-content">Nội dung Reviews: Đánh giá người dùng.</div>
+<div class="tab-content">Nội dung Support: Hỗ trợ khách hàng.</div>
+
+<script>
+    function switchTab(index) {
+        let tabs = document.getElementsByClassName("tab");
+        let contents = document.getElementsByClassName("tab-content");
+
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("active");
+            contents[i].classList.remove("active");
+            tabs[i].innerHTML = tabs[i].innerHTML.replace("→ ", "");
+        }
+
+        tabs[index].classList.add("active");
+        contents[index].classList.add("active");
+
+        tabs[index].innerHTML = "→ " + tabs[index].innerHTML;
+    }
+</script>
+
+</body>
+</html>
